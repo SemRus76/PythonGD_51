@@ -36,4 +36,35 @@ print(template_obj_1)
 #
 
 
+from Figure import Figure
+from Square import Square
+
+fig_1 = Figure(1,1,2,2)
+
+fig_1.x = 10
+fig_1.y = 20
+print(f"Координаты центра - {fig_1.x} {fig_1.y}")
+
+sqar = Square(1,1,2,2)
+print(f"Площадь квадратика будет равна {sqar.square()}")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
