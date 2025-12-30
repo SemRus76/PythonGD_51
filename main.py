@@ -1,68 +1,50 @@
-from temp import Temp
-from file import Template
 
-obj_1 = Temp(0, 2)
-
-obj_2 = Temp(0, 4)
-
-obj_1.set_value_1(1500)
-obj_2.set_value_1(1890)
-
-print(f"Object 1 = {obj_1.get_str()}")
-print(f"Object 2 = {obj_2.get_str()}")
-
-obj_1 + obj_2
-
-print(obj_1)
-
-print("-========================-")
-
-template_obj_1 = Template("NAMA")
-print(template_obj_1)
-template_obj_1.set_value_1(100)
-
-template_obj_1 + obj_1
-print(template_obj_1)
-
-# Задание
+# Полиморфизм
 #
-# Создать базовый класс Figure, который хранит в себе
-#   точку центра фигуры и ширину и высоту фигуры
-# От этого класса необходимо создать 3 наследника
-#       - Square, Triangle, Circle
-#  В наследниках необходимо реализовать функцию Площади (Square)
+#   Полиморфизм - это способность объектов менять свой тип и
+#       представляться другими объектами
 #
-#   Во всех классах должен присутствовать конструктор и метод str
-#
+#   Полиморфизм неразрывно связан с наследованием, потому как
+#       Сама спосбность представляться другим объектом заложена в
+#       механизм наследования
 
 
-from Figure import Figure
-from Square import Square
+from First import First
+from Lastli import Lastli
 
-fig_1 = Figure(1,1,2,2)
+def functionA(obj : First):
+    print(obj)
+    print(type(obj))
 
-fig_1.x = 10
-fig_1.y = 20
-print(f"Координаты центра - {fig_1.x} {fig_1.y}")
+def functionB(obj : First):
+    print(obj.nummer)
+    print(type(obj))
 
-sqar = Square(1,1,2,2)
-print(f"Площадь квадратика будет равна {sqar.square()}")
+fObj = First(10)
+functionA(fObj)
+functionB(fObj)
+print("-===================-")
+lObj = Lastli(99, "Иван")
+functionA(lObj)
+functionB(lObj)
+print("-===================-")
 
+from threading import Thread
+import time
 
+def print_chrismass(sign : str):
+    for i in range(1, 99, 2):
+        print(sign * i)
+        time.sleep(0.5)
 
+Thr1 = Thread(target=print_chrismass, args=("*"))
+Thr2 = Thread(target=print_chrismass, args=("#"))
 
+Thr1.start()
+Thr2.start()
 
-
-
-
-
-
-
-
-
-
-
-
+Thr1.join()
+Thr2.join()
 
 
 
