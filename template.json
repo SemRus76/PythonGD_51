@@ -1,0 +1,1 @@
+{"value-str": "Value", "value-int": 12, "value-float": 3.14, "value-bool": true, "value-object": {"key_1": "Hello", "key_2": "World"}, "value-array": [{"city": "Moscow"}, {"city": "Yaroslavl"}, {"city": "Vladivostok"}, {"city": "Saratov"}], "age": 18, "123": "hello", "123": "hello"}

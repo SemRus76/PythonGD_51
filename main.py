@@ -1,50 +1,29 @@
-
-# Полиморфизм
-#
-#   Полиморфизм - это способность объектов менять свой тип и
-#       представляться другими объектами
-#
-#   Полиморфизм неразрывно связан с наследованием, потому как
-#       Сама спосбность представляться другим объектом заложена в
-#       механизм наследования
+import json
 
 
-from First import First
-from Lastli import Lastli
+json_obj = dict()
 
-def functionA(obj : First):
-    print(obj)
-    print(type(obj))
+with open("template.json", "r") as json_file:
+    json_obj = json.load(json_file)
+    print(json_obj["value-float"])
+    print(json_obj["value-array"][3]["city"])
+    print(json_obj["123"])
+    print(json_obj)
 
-def functionB(obj : First):
-    print(obj.nummer)
-    print(type(obj))
+json_obj["age"] = 18
+json_obj[123] = "hello"
 
-fObj = First(10)
-functionA(fObj)
-functionB(fObj)
+
+with open("template.json", "w+") as json_file:
+    json.dump(json_obj, json_file)
+
 print("-===================-")
-lObj = Lastli(99, "Иван")
-functionA(lObj)
-functionB(lObj)
+str_json = json.dumps(json_obj)
+print(json_obj)
+print(str_json)
+json_obj = json.loads(str_json)
 print("-===================-")
 
-from threading import Thread
-import time
-
-def print_chrismass(sign : str):
-    for i in range(1, 99, 2):
-        print(sign * i)
-        time.sleep(0.5)
-
-Thr1 = Thread(target=print_chrismass, args=("*"))
-Thr2 = Thread(target=print_chrismass, args=("#"))
-
-Thr1.start()
-Thr2.start()
-
-Thr1.join()
-Thr2.join()
 
 
 
