@@ -1,6 +1,5 @@
 import json
 
-
 json_obj = dict()
 
 with open("template.json", "r") as json_file:
@@ -12,7 +11,6 @@ with open("template.json", "r") as json_file:
 
 json_obj["age"] = 18
 json_obj[123] = "hello"
-
 
 with open("template.json", "w+") as json_file:
     json.dump(json_obj, json_file)
