@@ -1,70 +1,36 @@
-import psycopg2
+import DBControl
 
-connection_item = psycopg2.connect(
-        dbname="postgres",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port=5432
-    )
-username = "Иванов"
-query = ("SELECT                             "
-         "  first_name as Имя                "
-         " ,second_name as Фамилия           "
-         " ,last_name as Отчество            "
-         " ,age as Возраст                   "
-         " ,number as Номер_Комнаты          "
-         "FROM                               "
-         " student                           "
-         "FULL OUTER JOIN                    "
-         " hostel_room                       "
-         "ON                                 "
-         " student.id = hostel_room.student  "
-         # "WHERE                              "
-         # f" student.first_name = '{username}'"
-         )
+controller = DBControl.DBControl()
 
-cursor = connection_item.cursor()
-cursor.execute(query)
-data = ([("Имя", "Фамилия", "Отчество", "Возраст", "Номер Комнаты")] +
-            cursor.fetchall())
-cursor.close()
-for line in data:
-    line_str = str()
-    for element in line:
-        line_str += f"{element} "
-    print(line_str)
+controller.print_student_list()
 
-student = ("( 'Лобанов', 'Семен', 'Евгеньевич', 21, true, 3 ),"
-           "( 'Семенов', 'Семен', 'Семенович', 22, true, 6 );")
-query_insert = ("INSERT INTO        "
-                " student           "
-                " (   first_name    "
-                "     ,second_name  "
-                "     ,last_name    "
-                "     ,age          "
-                "     ,sex          "
-                "     ,course       "
-                " )                 "
-	            f"VALUES {student}  "
-                )
-cursor = connection_item.cursor()
-cursor.execute(query_insert)
-connection_item.commit()
-cursor.close()
+controller.add_student("Жаров Андрей Витальевич", 19, True,
+                       3.5, 11)
 
-print("-=============================-")
+controller.print_student_list()
 
-cursor = connection_item.cursor()
-cursor.execute(query)
-data = ([("Имя", "Фамилия", "Отчество", "Возраст", "Номер Комнаты")] +
-            cursor.fetchall())
-cursor.close()
-for line in data:
-    line_str = str()
-    for element in line:
-        line_str += f"{element} "
-    print(line_str)
-connection_item.close()
+'''
+    Задание
+        Для Базы данных расписания неоходимо сделать класс, который будет
+            иметь следующие методы и входные параметры:
+                - Вывод расписания для группы - Имя группы
+                - Вывод расписания для студента - Имя студента
+                - Вывод расписания для преподавателя - Имя преподавателя
+                - Раписание аудитории - Номер аудитории
+                
+                - Добавление студента - все характеристики студента + 
+                                        имя группы
+                - Добавление преподавателя - все характеристики 
+                                                преподавателя
+                - Добавление пары - Имя группы, Преподаватель, Название 
+                                        предмета, аудитория, время начала
+                -* Добавление группы - Имя группы, 
+                                        СПИСОК студентов (имя студента)
+                                        
+                - Удаление пары - имя группы, имя преподавателя
+                - Удаление группы - имя группы
+                - Удаление преподавателя - имя преподавателя
+                - Удаление студента - имя студента
+'''
 
 
