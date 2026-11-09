@@ -2,6 +2,7 @@ import json
 
 json_obj = dict()
 
+# with <что открываем> as <переменная, в которую кладется дискриптор доступа>:
 with open("template.json", "r") as json_file:
     json_obj = json.load(json_file)
     print(json_obj["value-float"])
