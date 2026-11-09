@@ -36,5 +36,16 @@ print(summer)
 
 print(lst)
 
+print("-==========================-")
 
+def generatorFunc(value: int):
+    for i in range(0, value):
+        yield i
 
+gen = generatorFunc(5)
+
+print("-================-")
+
+gen_lst = [x**2 if x**2 == 0 else x**3 for x in range(0, 10) if x % 2 == 0]
+
+print(gen_lst)
